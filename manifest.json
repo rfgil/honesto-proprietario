@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "My Extension",
+  "version": "1.0.1",
+  "host_permissions": [
+    "*://*.portaldasfinancas.gov.pt/*"
+  ],
+  "permissions": [
+    "cookies",
+    "webRequest"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.portaldasfinancas.gov.pt/*"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ]
+}
