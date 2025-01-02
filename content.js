@@ -66,6 +66,7 @@ const lastDayOfMonth = (date) => {
 const emitirRecibo = async (lastRecibo, contratoId) => {
   const dataInicio = firstDayOfNextMonth(new Date(lastRecibo.dataInicio));
   const dataFim = lastDayOfMonth(dataInicio);
+  const dataRecebimento = new Date(dataInicio.getFullYear(), dataInicio.getMonth() - 1, 1)
 
   if (dataInicio > Date.now()) {
     alert("Já foi emitido o recibo para o mês atual.");
@@ -79,7 +80,7 @@ const emitirRecibo = async (lastRecibo, contratoId) => {
     valor: lastRecibo.importancia,
     dataInicio: formatDate(dataInicio),
     dataFim: formatDate(dataFim),
-    dataRecebimento: formatDate(dataInicio),
+    dataRecebimento: formatDate(dataRecebimento),
     tipoImportancia: {
       codigo: "RENDAC",
       label: "Renda"
@@ -92,6 +93,7 @@ const emitirRecibo = async (lastRecibo, contratoId) => {
 
   const confirmMessage = `Valor: ${payload.valor}€
 Datas: ${payload.dataInicio} -> ${payload.dataFim}
+Data Recebimento: ${payload.dataRecebimento}
 Nº Recibo: ${lastRecibo.numeroRecibo + 1}
 Referência: ${pdfName}`
 
