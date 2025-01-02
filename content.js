@@ -109,7 +109,12 @@ const handleAction = async (contratoId) => {
 
   const lastRecibo = recibos
     .filter((recibo) => recibo.numeroContrato === contratoId)
-    .reduce((max, obj) => (obj.numeroRecibo > max.numeroRecibo ? obj : max), recibos[0]);
+    .reduce((max, obj) => (obj.numeroRecibo > max.numeroRecibo ? obj : max), { numeroRecibo: 0 });
+
+  if (lastRecibo.numeroRecibo === 0) {
+    alert("Não foi possível encontrar o último recibo emitido.");
+    return;
+  }
 
   emitirRecibo(lastRecibo, contratoId);
 }
