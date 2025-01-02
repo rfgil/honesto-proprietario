@@ -138,3 +138,9 @@ const injectAction = async () => {
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   if (request.text === "OBTER_CONTRATOS_FINISHED") injectAction()
 });
+
+[...document.querySelectorAll('.pagination a')].forEach((el) =>
+  el.addEventListener('click', () => {
+    injectAction();
+  })
+);
