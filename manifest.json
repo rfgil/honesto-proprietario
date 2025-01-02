@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "My Extension",
+  "name": "Honesto Proprietário",
   "version": "1.0.1",
   "host_permissions": [
     "*://*.portaldasfinancas.gov.pt/*"
