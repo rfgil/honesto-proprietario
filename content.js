@@ -28,21 +28,21 @@ const fetchContrato = (contratoId) => fetch(
     })
   }
 ).then((response) => response.text())
-.then((html) => {
-  const doc = (new DOMParser()).parseFromString(html, "text/html")
-  const script = Array.from(doc.querySelectorAll("script:not([src])"))[1]
-  return JSON.parse(script.innerText.match(/\$scope\.recibo = ({.*);$/m)[1])
-})
+  .then((html) => {
+    const doc = (new DOMParser()).parseFromString(html, "text/html")
+    const script = Array.from(doc.querySelectorAll("script:not([src])"))[1]
+    return JSON.parse(script.innerText.match(/\$scope\.recibo = ({.*);$/m)[1])
+  })
 
 const downloadFile = async (url, filename) => fetch(url)
   .then(response => response.blob())
   .then(blob => {
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = filename;
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
   })
   .catch(e => console.error('Error downloading file:', e));
 
@@ -54,7 +54,7 @@ const formatDate = (date) => {
   return `${year}-${month}-${day}`;
 }
 
-const firstDayOfNextMonth = (date) => 
+const firstDayOfNextMonth = (date) =>
   new Date(date.getFullYear(), date.getMonth() + 1, 1)
 
 const lastDayOfMonth = (date) => {
