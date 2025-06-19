@@ -68,8 +68,8 @@ const emitirRecibo = async (lastRecibo, contratoId) => {
   const dataFim = lastDayOfMonth(dataInicio);
   const dataRecebimento = new Date(dataInicio.getFullYear(), dataInicio.getMonth() - 1, 1)
 
-  if (dataInicio > Date.now()) {
-    alert("Já foi emitido o recibo para o mês atual.");
+  if (dataRecebimento > Date.now()) {
+    alert("Já foi emitido o recibo referente ao recebimento do mês atual.");
     return;
   }
 
